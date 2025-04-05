@@ -86,5 +86,28 @@ document.querySelectorAll('.nav-button').forEach(button => {
                 abilitiesSection.style.opacity = '1';
             }, 100);
         }
+        
+        if (button.textContent === 'IDENTIDADE') {
+            document.querySelectorAll('.section').forEach(section => {
+                section.classList.add('hidden');
+            });
+            
+            const identitySection = document.getElementById('identity-section');
+            identitySection.classList.remove('hidden');
+            
+            // Fade in effect
+            identitySection.style.opacity = '0';
+            identitySection.style.transition = 'opacity 0.5s ease';
+            setTimeout(() => {
+                identitySection.style.opacity = '1';
+            }, 100);
+
+            // Trigger typewriter effect for personal entry
+            const entryText = identitySection.querySelector('.entry-text');
+            entryText.style.width = '0';
+            setTimeout(() => {
+                entryText.style.width = '100%';
+            }, 500);
+        }
     });
 }); 
