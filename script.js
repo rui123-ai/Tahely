@@ -24,6 +24,38 @@ document.addEventListener('DOMContentLoaded', () => {
         
         typeWriter();
     }, 2000);
+
+    // Music Player functionality
+    const musicToggle = document.getElementById('musicToggle');
+    const bgMusic = document.getElementById('bgMusic');
+    let isPlaying = false;
+
+    musicToggle.addEventListener('click', () => {
+        if (!isPlaying) {
+            bgMusic.play()
+                .then(() => {
+                    isPlaying = true;
+                    musicToggle.classList.add('playing');
+                })
+                .catch(error => {
+                    console.log("Playback failed:", error);
+                });
+        } else {
+            bgMusic.pause();
+            isPlaying = false;
+            musicToggle.classList.remove('playing');
+        }
+    });
+
+    // Ajusta o volume para não ficar muito alto
+    bgMusic.volume = 0.3;
+
+    // Adiciona interação com tecla 'M'
+    document.addEventListener('keydown', (e) => {
+        if (e.key.toLowerCase() === 'm') {
+            musicToggle.click();
+        }
+    });
 });
 
 // Adiciona efeito de glitch aos botões

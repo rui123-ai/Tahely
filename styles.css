@@ -156,4 +156,96 @@ body {
     color: var(--neon-primary);
     position: absolute;
     left: 0;
+}
+
+/* Music Player Styles */
+.music-player {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+}
+
+.music-toggle {
+    background: transparent;
+    border: 2px solid var(--neon-primary);
+    color: var(--neon-primary);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.music-toggle:hover {
+    box-shadow: 0 0 15px var(--neon-primary);
+}
+
+.music-toggle i {
+    font-size: 20px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: opacity 0.3s ease;
+}
+
+.equalizer {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 20px;
+    height: 20px;
+}
+
+.equalizer span {
+    display: inline-block;
+    width: 3px;
+    height: 100%;
+    margin: 0 1px;
+    background: var(--neon-primary);
+    animation: equalize 1s infinite;
+}
+
+.equalizer span:nth-child(2) {
+    animation-delay: 0.3s;
+}
+
+.equalizer span:nth-child(3) {
+    animation-delay: 0.6s;
+}
+
+@keyframes equalize {
+    0% { height: 5px; }
+    50% { height: 20px; }
+    100% { height: 5px; }
+}
+
+.music-toggle.playing .fa-play {
+    opacity: 0;
+}
+
+.music-toggle.playing .equalizer {
+    display: flex;
+}
+
+/* Pulse animation for music button */
+.music-toggle.playing {
+    animation: musicPulse 2s infinite;
+}
+
+@keyframes musicPulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(0, 255, 255, 0.4);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(0, 255, 255, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(0, 255, 255, 0);
+    }
 } 
